@@ -1,3 +1,5 @@
+import { addEvent } from './event'
+
 /**
  * 1. 把 vdom 虚拟DOM 变成真实DOM dom
  * 2. 把虚拟DOM上的属性更新或同步到 dom 上
@@ -113,7 +115,8 @@ function updateProps(dom, newProps) {
       }
     } else if (key.startsWith('on')) {
       // 给真实DOM加属性的话，onclick
-      dom[key.toLocaleLowerCase()] = newProps[key]
+      // dom[key.toLocaleLowerCase()] = newProps[key]
+      addEvent(dom, key.toLocaleLowerCase(), newProps[key])
     }else {  // 在 JS 中，dom.className = 'title'
       dom[key] = newProps[key];
     }
